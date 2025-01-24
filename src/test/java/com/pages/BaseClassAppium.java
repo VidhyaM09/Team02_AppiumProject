@@ -21,7 +21,7 @@ public class BaseClassAppium {
 	public void setUp() {
 		try {
 			String appName = System.getProperty("appName", "skytubeapp");
-			startAppiumServer();
+			//startAppiumServer();
 
 			// Configure UiAutomator2 options
 			UiAutomator2Options options = new UiAutomator2Options();
@@ -85,7 +85,7 @@ public class BaseClassAppium {
 		} catch (Exception e) {
 			System.err.println("Error occurred while closing the driver: " + e.getMessage());
 		} finally {
-			stopAppiumServer();
+			//stopAppiumServer();
 		}
 	}
 
