@@ -9,7 +9,7 @@ import org.testng.annotations.DataProvider;
     glue = {"com.stepDefs", "com.pages"},    
     plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber.json"},
     monochrome = true,
-    tags = "@tag1"  
+    tags = ""  
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
     
