@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.PointerInput.Origin;
 import org.openqa.selenium.interactions.Sequence;
@@ -93,11 +94,11 @@ public class SwipeUtils extends BaseClassAppium {
 	        }
 	    }
 	 
-	  public void validateSwipeWithScreenshot() throws InterruptedException {
+	  public boolean validateSwipeWithScreenshot() throws InterruptedException {
 	       
             try {
 	    
-	        	
+	        	boolean screenAction;
 	        	// The screenshots are stored in memory and not saved to a file or directory if
 				// we are using output type as base 64
 //				 String beforeSwipeScreenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
@@ -129,13 +130,72 @@ public class SwipeUtils extends BaseClassAppium {
 				
 				 if (!FileUtils.contentEquals(beforeFile, afterFile)) {
 			            System.out.println("Swipe action validated successfully!");
+			            screenAction=true;
 			        } else {
+			        	 screenAction=false;
 			            Assert.fail("Swipe action did not cause any visible change.");
 			        }
+				 return screenAction;
 				
 	        } catch (IOException e) {
 	            System.out.println("Error while saving screenshot: " + e.getMessage());
+	          return false;
 	        }
 	    }
+	  
+	  public void doubleTapAction(double xPercent,double yPercent)
+	  {
+		  try {
+			  Dimension screenSize = driver.manage().window().getSize();
+				int screenWidth = screenSize.getWidth();
+				int screenHeight = screenSize.getHeight();
+				int x = (int) (screenWidth * 0.50); 
+				int y = (int) (screenHeight * 0.50); 
+				PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+				Sequence pressTab = new Sequence(finger, 1);
+				pressTab.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y)); // Move to location
+				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg())); // Release
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+				
+				driver.perform(Arrays.asList(pressTab));
+		  }
+		 catch(Exception e)
+		  {
+			 e.printStackTrace();
+			 System.out.println("Error while performing double tap action: " + e.getMessage());
+		  }
+	  }
+	  public void tapAction(double xPercent,double yPercent)
+	  {
+		  try {
+			  Dimension screenSize = driver.manage().window().getSize();
+				int screenWidth = screenSize.getWidth();
+				int screenHeight = screenSize.getHeight();
+				int x = (int) (screenWidth * 0.50); 
+				int y = (int) (screenHeight * 0.50); 
+				PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+				Sequence pressTab = new Sequence(finger, 1);
+				pressTab.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y)); // Move to location
+				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg())); // Release
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+				
+				driver.perform(Arrays.asList(pressTab));
+		  }
+		 catch(Exception e)
+		  {
+			 e.printStackTrace();
+			 System.out.println("Error while performing double tap action: " + e.getMessage());
+		  }
+	  }
 
 }
