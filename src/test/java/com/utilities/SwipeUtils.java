@@ -184,10 +184,6 @@ public class SwipeUtils extends BaseClassAppium {
 				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
 				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
 				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg())); // Release
-				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
-				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
-				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
-				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 				
 				driver.perform(Arrays.asList(pressTab));
 		  }
