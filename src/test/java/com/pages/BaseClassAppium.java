@@ -33,7 +33,9 @@ public class BaseClassAppium {
 			options.setAppPackage(ConfigManager.getProperty(appName + ".appPackage"));
 			options.setAppActivity(ConfigManager.getProperty(appName + ".appActivity"));
 			options.setCapability(ConfigManager.getProperty("capability1"),true);
-			options.setCapability(ConfigManager.getProperty("capability2"),120000);
+			options.setCapability(ConfigManager.getProperty("capability2"),150000);
+			options.setCapability(ConfigManager.getProperty("capability3"), 1000);
+
 
 			// Initialize AndroidDriver
 			URL serverURL = new URL("http://127.0.0.1:4723/");
