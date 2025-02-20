@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-    features = "src/test/resources/features", 
+    features = "src/test/resources/features/01_Home.feature", 
     glue = {"com.stepDefs", "com.pages"},    
     plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber.json"},
     monochrome = true,

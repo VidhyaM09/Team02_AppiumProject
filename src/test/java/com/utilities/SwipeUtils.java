@@ -39,7 +39,7 @@ public class SwipeUtils extends BaseClassAppium {
 			swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
 
 			// Move to the end position
-			swipe.addAction(finger.createPointerMove(Duration.ofMillis(5000), Origin.viewport(), xEnd, yEnd));
+			swipe.addAction(finger.createPointerMove(Duration.ofMillis(7000), Origin.viewport(), xEnd, yEnd));
 
 			// Release finger
 			swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
@@ -79,7 +79,7 @@ public class SwipeUtils extends BaseClassAppium {
 	            swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
 
 	            // Move to end position (swipe action)
-	            swipe.addAction(finger.createPointerMove(Duration.ofMillis(5000), Origin.viewport(), xEnd, yEnd));
+	            swipe.addAction(finger.createPointerMove(Duration.ofMillis(7000), Origin.viewport(), xEnd, yEnd));
 
 	            // Release finger
 	            swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
@@ -149,8 +149,8 @@ public class SwipeUtils extends BaseClassAppium {
 			  Dimension screenSize = driver.manage().window().getSize();
 				int screenWidth = screenSize.getWidth();
 				int screenHeight = screenSize.getHeight();
-				int x = (int) (screenWidth * 0.50); 
-				int y = (int) (screenHeight * 0.50); 
+				int x = (int) (screenWidth * xPercent); 
+				int y = (int) (screenHeight * yPercent); 
 				PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
 				Sequence pressTab = new Sequence(finger, 1);
 				pressTab.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y)); // Move to location
@@ -176,13 +176,13 @@ public class SwipeUtils extends BaseClassAppium {
 			  Dimension screenSize = driver.manage().window().getSize();
 				int screenWidth = screenSize.getWidth();
 				int screenHeight = screenSize.getHeight();
-				int x = (int) (screenWidth * 0.50); 
-				int y = (int) (screenHeight * 0.50); 
+				int x = (int) (screenWidth * xPercent); 
+				int y = (int) (screenHeight * yPercent); 
 				PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
 				Sequence pressTab = new Sequence(finger, 1);
 				pressTab.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y)); // Move to location
 				pressTab.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
-				pressTab.addAction(new Pause(finger,Duration.ofMillis(100)));
+				pressTab.addAction(new Pause(finger,Duration.ofMillis(1000)));
 				pressTab.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg())); // Release
 				
 				driver.perform(Arrays.asList(pressTab));
